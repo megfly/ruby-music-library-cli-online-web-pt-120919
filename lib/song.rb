@@ -1,0 +1,45 @@
+class Song 
+  
+  attr_accessor :name, :artist, :genre
+  
+  @@all = []
+  
+  def initialize (name, artist = nil, genre = nil)
+    @name = name 
+    self.artist = artist if artist
+    self.genre = genre if genre #song belongs to genre if it has a genre
+  end 
+  
+  def self.all 
+    @@all
+  end 
+  
+  def self.destroy_all 
+    @@all.clear
+  end 
+  
+  def save 
+    @@all << self
+  end 
+  
+  def self.create (name)
+    #initializes, saves and returns the song 
+    song = self.new(name) 
+    song.save 
+    song 
+  end 
+  
+  def artist=(artist)
+    @artist = artist 
+    artist.add_song(self) #song belongs to artist 
+  end 
+  
+  def genre=(genre)
+    @genre = genre #defining variable 
+     #does not add the song to the genres collection if it already exits
+    
+    genre.songs << self #adds song to genres collection of songs
+  end 
+  
+
+end 
