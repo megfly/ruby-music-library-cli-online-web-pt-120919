@@ -19,6 +19,7 @@ class MusicLibraryController
     
     when "exit"
       exit 
+    end 
   end 
   
 end 
