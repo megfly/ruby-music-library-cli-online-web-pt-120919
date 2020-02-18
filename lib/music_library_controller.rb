@@ -48,9 +48,9 @@ class MusicLibraryController
   end
 
   def list_genres
-    genre =Genre.all.sort {|genre1, genre2| genre1.name <=> genre2.name}
-
-    g.each.with_index(1) {|genre, index| puts "#{index}. #{genre.name}"}
+    sorted_library = self.library.sort_by {|song|song.genre.name}
+    genres = sorted_library.collect {|song|"#{song.genre.name}"}.uniq
+    genres.each {|genre| puts "#{genres.index(genre) + 1}. #{genre}"}
   end
 
   def play_song
