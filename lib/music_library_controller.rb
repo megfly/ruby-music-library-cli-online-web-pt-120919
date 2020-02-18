@@ -34,5 +34,46 @@ class MusicLibraryController
       call
     end
   end
+  
+   def list_songs
+      Song.all.sort_by {|song| song.name}.each_with_index {|element, index| puts "#{index+1}. #{element.artist.name} - #{element.name} - #{element.genre.name}"}
+    end
+
+    def list_artists
+      Artist.all.sort_by {|artist| artist.name}.each_with_index {|element, index| puts "#{index+1}. #{element.name}"}
+    end
+
+    def list_genres
+      Genre.all.sort_by {|genre| genre.name}.each_with_index {|element, index| puts "#{index+1}. #{element.name}"}
+    end
+
+    def list_songs_by_artist
+      puts "Please enter the name of an artist:"
+      name = gets
+      artist = Artist.find_by_name(name)
+      if artist == nil
+      else
+      artist.songs.sort_by {|song| song.name}.each_with_index {|element, index| puts "#{index+1}. #{element.name} - #{element.genre.name}"}
+      end
+    end
+
+    def list_songs_by_genre
+      puts "Please enter the name of a genre:"
+      name = gets
+      genre = Genre.find_by_name(name)
+      if genre == nil
+      else
+        genre.songs.sort_by {|genre| genre.name}.each_with_index {|element, index| puts "#{index+1}. #{element.artist.name} - #{element.name}"}
+      end
+    end
+
+    def play_song
+      puts "Which song number would you like to play?"
+      input = gets.strip.to_i
+      if (1..Song.all.length).include?(input)
+        song = Song.all.sort_by {|song| song.name}[input-1]
+      end
+      puts "Playing #{song.name} by #{song.artist.name}" if song
+    end
 
 end 
