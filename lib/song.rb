@@ -38,7 +38,7 @@ class Song
     @genre = genre #defining variable 
      #does not add the song to the genres collection if it already exits
     
-    genre.songs << self #adds song to genres collection of songs
+    genre.songs << self unless genre.songs.include?(self)
   end 
   
 
