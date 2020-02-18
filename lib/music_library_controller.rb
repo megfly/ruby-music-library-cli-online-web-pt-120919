@@ -51,11 +51,11 @@ class MusicLibraryController
   end
 
   def list_genres
-    songs_sorted_by_genre = Genre.all.sort_by do |genre|
-      genre.name
+    songs_sorted_by_genre = Genre.all.sort_by do |g|
+      g.name
     end
-    songs_sorted_by_genre.each.with_index(1) do |genre,index|
-      puts "#{index}. #{genre.name}"
+    songs_sorted_by_genre.each.with_index(1) do |g,index|
+      puts "#{index}. #{g.name}"
     end
   end
   
@@ -63,11 +63,11 @@ class MusicLibraryController
     puts "Please enter the name of an artist:"
     input = gets.chomp
     if artist = Artist.find_by_name(input)
-      songs_sorted_by_name = artist.songs.sort_by do |song|
-        song.name
+      songs_sorted_by_name = artist.songs.sort_by do |s|
+        s.name
       end
-      songs_sorted_by_name.each.with_index(1) do |song,index|
-        puts "#{index}. #{song.name} - #{song.genre.name}"
+      songs_sorted_by_name.each.with_index(1) do |s,index|
+        puts "#{index}. #{s.name} - #{s.genre.name}"
       end
     end
   end
