@@ -35,36 +35,23 @@ class MusicLibraryController
     end
   end
   
-   def list_songs
-      Song.all.sort_by {|song| song.name}.each_with_index {|element, index| puts "#{index+1}. #{element.artist.name} - #{element.name} - #{element.genre.name}"}
-    end
+  def list_songs
+    song = Song.all.sort {|song1, song2| song1.name <=> song2.name}
 
-    def list_artists
-      Artist.all.sort_by {|artist| artist.name}.each_with_index {|element, index| puts "#{index+1. #{element.name}"}
-    end
+    song.each.with_index(1) {|song, index| puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"}
+  end 
 
-    def list_genres
-      Genre.all.sort_by {|genre| genre.name}.each_with_index {|element, index| puts "#{index+1}. #{element.name}"}
-    end
+   def list_artists
+    artist =Artist.all.sort {|artist1, artist2|artist1.name <=> artist2.name}
 
-    def list_songs_by_artist
-      puts "Please enter the name of an artist:"
-      name = gets
-      artist = Artist.find_by_name(name)
-      if artist == nil
-      else
-      artist.songs.sort_by {|song| song.name}.each_with_index {|element, index| puts "#{index+1}. #{element.name} - #{element.genre.name}"}
-      end
-    end
+    artist.each.with_index(1) {|artist, index| puts "#{index}. #{artist.name}"}
+  end
 
-    def list_songs_by_genre
-      puts "Please enter the name of a genre:"
-      name = gets
-      genre = Genre.find_by_name(name)
-      if genre == nil
-      else
-        genre.songs.sort_by {|genre| genre.name}.each_with_index {|element, index| puts "#{index+1}. #{element.artist.name} - #{element.name}"}
-      end
+  def list_genres
+    genre =Genre.all.sort {|genre1, genre2| genre1.name <=> genre2.name}
+
+    g.each.with_index(1) {|genre, index| puts "#{index}. #{genre.name}"}
+  end
     end
 
     def play_song
