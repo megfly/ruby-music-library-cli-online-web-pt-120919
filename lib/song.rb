@@ -22,7 +22,7 @@ class Song
     @@all << self
   end 
   
-  def self.create (name)
+  def self.create(name)
     #initializes, saves and returns the song 
     song = self.new(name) 
     song.save 
@@ -43,6 +43,10 @@ class Song
   
   def self.find_by_name(name)
     self.all.detect { |song| song.name == name}
+  end 
+  
+  def find_or_create_by_name 
+    self.find_by_name || self.create(name)
   end 
   
 
