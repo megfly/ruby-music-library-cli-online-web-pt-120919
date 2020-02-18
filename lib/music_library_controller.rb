@@ -48,7 +48,6 @@ class MusicLibraryController
   end
 
   def list_genres
-    #prints all genres in the music library in a numbered list (alphabetized by genre name)
     songs_sorted_by_genre = Genre.all.sort_by do |genre|
       genre.name
     end
