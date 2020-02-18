@@ -38,4 +38,8 @@ class Artist
     songs << song unless songs.include?(song) #adds song to collection unless the collection already includes that song
   end 
   
+  def genres 
+    self.songs
+  end 
+  
 end 
