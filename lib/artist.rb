@@ -39,7 +39,7 @@ class Artist
   end 
   
   def genres 
-    self.songs
+    self.songs.collect
   end 
   
 end 
