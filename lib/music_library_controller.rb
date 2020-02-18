@@ -41,7 +41,7 @@ class MusicLibraryController
     song.each.with_index(1) {|song, index| puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}"}
   end 
 
-   def list_artists
+  def list_artists
     artist =Artist.all.sort {|artist1, artist2|artist1.name <=> artist2.name}
 
     artist.each.with_index(1) {|artist, index| puts "#{index}. #{artist.name}"}
@@ -52,10 +52,9 @@ class MusicLibraryController
 
     g.each.with_index(1) {|genre, index| puts "#{index}. #{genre.name}"}
   end
-    end
 
-    def play_song
-      puts "Which song number would you like to play?"
+  def play_song
+    puts "Which song number would you like to play?"
       input = gets.strip.to_i
       if (1..Song.all.length).include?(input)
         song = Song.all.sort_by {|song| song.name}[input-1]
